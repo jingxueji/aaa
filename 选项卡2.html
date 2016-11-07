@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>智能社--http://www.zhinengshe.com</title>
+    <style>
+        #box div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #369;
+            display: none;
+            margin-top: 4px;
+        }
+        #box div.on{
+            display: block;
+        }
+        input.on{
+            background: #f36;
+        }
+    </style>
+    <script>
+
+
+    window.onload=function(){
+        var oBox=document.getElementById('box');
+        var aInp=oBox.getElementsByTagName('input');
+        var aDiv=oBox.getElementsByTagName('div');
+
+        function tab(){
+            for(var i=0;i<aInp.length;i++){
+                aInp[i].className='';
+                aDiv[i].className='';
+            }
+            aInp[n].className='on';
+            aDiv[n].className='on';
+        }
+
+        for(var i=0;i<aInp.length;i++){
+            aInp[i].index=i;
+            aInp[i].onclick=function(){
+                n=this.index;
+                tab();
+            };
+        }
+
+        function next(){
+            n++;
+            if(n==aDiv.length){
+                n=0;
+            }
+            tab();
+        }
+
+        var oRight=document.getElementById('right');
+        var n=0;
+        oRight.onclick=next;
+
+        var oLeft=document.getElementById('left');
+
+        oLeft.onclick=function(){
+            n--;
+            if(n==-1){
+                n=aDiv.length-1;
+            }
+            tab();
+        };
+
+        var timer=setInterval(next,1000);
+
+        oBox.onmouseover=function(){
+            clearInterval(timer);
+        };
+        oBox.onmouseout=function(){
+            clearInterval(timer);
+            timer=setInterval(next,1000);
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <a href="javascript:;" id="left">←</a>
+        <input class="on" type="button" value="aaa"/>
+        <input type="button" value="bbb"/>
+        <input type="button" value="ccc"/>
+        <a href="javascript:;" id="right">→</a>
+        <div class="on">111</div>
+        <div>222</div>
+        <div>333</div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
